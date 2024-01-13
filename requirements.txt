@@ -1,7 +1,8 @@
+plotly_express
 altair
 numpy
 pandas
 pydeck
 streamlit
-plotly.express
+
 
