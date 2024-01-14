@@ -167,7 +167,9 @@ line_chart_sales = px.line(
 
 # Display the sales line chart using col1.plotly_chart
 col1.plotly_chart(line_chart_sales)
-st.markdown("---", key="separator")
+
+st.markdown(" --- ", key="separator")
+
 # Line chart for monthly total profit over years
 line_chart_profit = px.line(
     yearly_profit,
