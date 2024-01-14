@@ -51,9 +51,8 @@ selected_retailers = st.multiselect("Select Retailers", df["Retailer"].unique(),
 
 # Filter DataFrame based on selected retailers
 filtered_df = df[df["Retailer"].isin(selected_retailers)].sort_values(by="Total Sales", ascending=False)
-
-col1, col2 = st.columns(2,gap="medium")
 st.subheader('Categorigal Distribution and Market Share')
+col1, col2 = st.columns(2,gap="medium")
 # Sunburst Chart
 with col1:
     st.subheader('Retailer Wise Categorical Sunburst Chart')
