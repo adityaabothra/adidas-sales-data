@@ -106,7 +106,7 @@ animated_trendline = px.scatter(
     color='Retailer',
     trendline='ols',  # Ordinary Least Squares trendline
     title='Retailer Sales Trendline',
-    labels={'Total Sales': 'Sales'},
+    labels={'x'='Total Sales','y'= 'Sales'},
     animation_frame='Year',
     animation_group='Retailer',
     width=800,
@@ -124,7 +124,7 @@ if st.button("Start"):
         color='Retailer',
         trendline='ols',  # Ordinary Least Squares trendline
         title='Retailer Sales Trendline',
-        labels={'Total Sales': 'Sales'},
+        labels={'x'='Total Sales','y'= 'Sales'},
         animation_frame='Month',
     
     animation_group='Retailer',
