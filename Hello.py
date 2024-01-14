@@ -28,6 +28,7 @@ st.write(''' Welcome To Adidas US Sales Dashboard''')
 
 
 df=load_data('./AdidasUSSales.xlsx')
+df.dropna()
 # Convert 'Invoice Date' to datetime
 df['Invoice Date'] = pd.to_datetime(df['Invoice Date'])
 df['Cumulative Total Sales'] = df.groupby('Retailer')['Total Sales'].cumsum()
