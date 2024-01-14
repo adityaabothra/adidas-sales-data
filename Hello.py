@@ -52,6 +52,28 @@ selected_retailers = st.multiselect("Select Retailers", df["Retailer"].unique(),
 # Filter DataFrame based on selected retailers
 filtered_df = df[df["Retailer"].isin(selected_retailers)].sort_values(by="Total Sales", ascending=False)
 
+col1, col2 = st.columns(2,gap="medium")
+
+# Sunburst Chart
+with col1:
+    st.subheader('Retailer Wise Categorical Sunburst Chart')
+    sunburst_chart = px.sunburst(filtered_df, path=['Retailer', 'Product'], values='Total Sales',
+                                 title='Sunburst Chart')
+    st.plotly_chart(sunburst_chart, use_container_width=True)
+
+# Market Share Pie Chart
+with col2:
+    st.subheader("Market Share")
+    # Group the data by retailer and sum the total sales for each retailer
+    retailer_sales = filtered_df.groupby('Retailer')['Total Sales'].sum()
+    # Calculate the total sales of all retailers
+    total_sales = retailer_sales.sum()
+    # Calculate the market share of each retailer by dividing their total sales by the total sales of all retailers
+    market_share = retailer_sales / total_sales
+    # Create a pie chart using plotly
+    fig = px.pie(market_share, values=market_share, names=market_share.index, title='Market Share of Retailers')
+    # Show the plot
+    st.plotly_chart(fig)
 
 # Sunburst Chart
 st.subheader('Retailer Wise Categorical Sunburst Chart')
