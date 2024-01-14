@@ -102,7 +102,7 @@ animated_trendline_place = st.empty()
 
 # Animated trendline chart
 animated_trendline = px.scatter(
-    df.groupby(['Retailer', 'Year', 'Operating Profit', Total Sales'])['Total Sales'].sum().reset_index(),
+    df.groupby(['Retailer', 'Year', 'Operating Profit', 'Total Sales'])['Total Sales'].sum().reset_index(),
     x='Operating Profit',
     y='Total Sales',
     color='Retailer',
