@@ -34,6 +34,7 @@ df['Invoice Date'] = pd.to_datetime(df['Invoice Date'])
 df['Cumulative Total Sales'] = df.groupby('Retailer')['Total Sales'].cumsum()
 df['Cumulative Total Sales Month Wise']=df.groupby('Month')['Total Sales'].cumsum()
 df['Cumulative Sales State Wise']=df.groupby('State')['Total Sales'].cumsum()
+df['Operating Profit State Wise']=df.groupby('State')['Operating Profit'].cumsum()
 # Convert numeric columns to numeric types
 numeric_columns = ['Price per Unit', 'Units Sold', 'Total Sales', 'Operating Profit', 'Operating Margin']
 df[numeric_columns] = df[numeric_columns].apply(pd.to_numeric, errors='coerce')
