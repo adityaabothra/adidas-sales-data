@@ -55,7 +55,7 @@ filtered_df = df[df["Retailer"].isin(selected_retailers)].sort_values(by="Total 
 col1, col2 = st.columns(2,gap="medium")
 # Sunburst Chart
 with col1:
-    st.subheader('Retailer Wise Categorical Sunburst Chart')
+    st.subheader('Interactive Sunburst Chart')
     sunburst_chart = px.sunburst(filtered_df, path=['Retailer', 'Product'], values='Total Sales',
                                  title='Sunburst Chart')
     st.plotly_chart(sunburst_chart, use_container_width=True)
