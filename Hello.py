@@ -129,12 +129,33 @@ st.plotly_chart(fig)
 # if st.button("Start"):
 #     animated_trendline_place.plotly_chart(animated_trendline_cumulative)
 
+# yearly_sales = df.groupby(['Year','Month'])['Total Sales'].sum().reset_index()
+# st.subheader('Monthly Total Sales Over Years')
+# line_chart_place = st.empty()
+
+# # Line chart for monthly total sales over years
+# line_chart = px.line(
+#     yearly_sales,
+#     x='Month',
+#     y='Total Sales',
+#     color='Year',
+#     title='Monthly Total Sales Over Years',
+#     markers=True,
+#     template="none"
+# )
+
+# # Display the line chart using st.plotly_chart
+# st.plotly_chart(line_chart)
+
 yearly_sales = df.groupby(['Year','Month'])['Total Sales'].sum().reset_index()
-st.subheader('Monthly Total Sales Over Years')
-line_chart_place = st.empty()
+yearly_profit = df.groupby(['Year','Month'])['Operating Profit'].sum().reset_index()
+st.subheader('Monthly Total Sales and Profit Over Years')
+
+# Create two columns for layout
+col1, col2 = st.beta_columns(2)
 
 # Line chart for monthly total sales over years
-line_chart = px.line(
+line_chart_sales = px.line(
     yearly_sales,
     x='Month',
     y='Total Sales',
@@ -144,8 +165,22 @@ line_chart = px.line(
     template="none"
 )
 
-# Display the line chart using st.plotly_chart
-st.plotly_chart(line_chart)
+# Display the sales line chart using col1.plotly_chart
+col1.plotly_chart(line_chart_sales)
+
+# Line chart for monthly total profit over years
+line_chart_profit = px.line(
+    yearly_profit,
+    x='Month',
+    y='Operating Profit',
+    color='Year',
+    title='Monthly Total Profit Over Years',
+    markers=True,
+    template="simple_white"
+)
+
+# Display the profit line chart using col2.plotly_chart
+col2.plotly_chart(line_chart_profit)
 
 # Advanced Scatter Plot Matrix
 st.subheader('Advanced Scatter Plot Matrix')
