@@ -70,7 +70,7 @@ bar_race_chart.plotly_chart(fig,use_container_width=True)
 if st.button("Start Race"):
     for i in range(1, len(filtered_df) + 1):
         # Update the chart dynamically
-        fig = px.bar(
+        updated_race = px.bar(
             filtered_df.iloc[:i],
             x="Total Sales",
             y="Retailer",
@@ -80,7 +80,7 @@ if st.button("Start Race"):
             labels={"Total Sales": "Total Revenue($)"},
                   
         )
-        bar_race_chart.plotly_chart(fig)    
+        bar_race_chart.plotly_chart(updated_race)    
         
 
 st.subheader("Market Share")
@@ -117,7 +117,7 @@ st.plotly_chart(animated_trendline)
 # Display the animated trendline chart
 if st.button("Start"):
     for i in range(1, len(df) + 1):
-        animated_trendline = px.scatter(
+        updated_trendline = px.scatter(
         df.iloc[:i],
         x='Operating Profit',
         y='Total Sales',
@@ -131,7 +131,7 @@ if st.button("Start"):
     width=800,
     height=500
 )
-        animated_trendline_place.plotly_chart(animated_trendline)
+        animated_trendline_place.plotly_chart(updated_trendline)
 
 
 
