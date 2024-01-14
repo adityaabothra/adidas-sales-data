@@ -136,10 +136,10 @@ animated_line_chart_place = st.empty()
 
 # Animated line chart for sales retailer-wise
 animated_line_chart = px.line(
-    yearly_sales,
+    df,
     x='Month',
     y='Total Sales',
-    color='Year',
+    color='Retailer',
     title='Monthly Total Sales Over Years - Retailer-wise',
     markers=True,
     template="none"
