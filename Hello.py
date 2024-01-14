@@ -108,15 +108,15 @@ animated_trendline = px.scatter(
     title='Retailer Sales Trendline',
     labels={'Total Sales': 'Sales'},
     animation_frame='Year',
-    
     animation_group='Retailer',
     width=800,
     height=500
 )
 st.plotly_chart(animated_trendline)
+
 # Display the animated trendline chart
 if st.button("Start"):
-    for i in range(1, len(filtered_df) + 1):
+    for i in range(1, len(df) + 1):
         animated_trendline = px.scatter(
         df.iloc[:i],
         x='Operating Profit',
