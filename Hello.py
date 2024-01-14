@@ -96,44 +96,42 @@ fig = px.pie(market_share, values=market_share, names=market_share.index, title=
 st.plotly_chart(fig)
 
 
+# Streamlit app
 st.subheader('Retailer Sales Trendline Animation')
-animated_trendline_place=st.empty()
+animated_trendline_place = st.empty()
+
 # Animated trendline chart
 animated_trendline = px.scatter(
-    df.groupby(['Operating Profit','Product','Year','Month','Day', 'Retailer'])['Total Sales'].sum().reset_index(),
+    df.groupby(['Operating Profit', 'Product', 'Year', 'Month', 'Day', 'Retailer'])['Total Sales'].sum().reset_index(),
     x='Operating Profit',
     y='Total Sales',
     color='Retailer',
     trendline='ols',  # Ordinary Least Squares trendline
     title='Retailer Sales Trendline',
-    labels={'x'='Total Sales','y'= 'Sales'},
+    labels={'Total Sales': 'Sales'},
     animation_frame='Year',
     animation_group='Retailer',
     width=800,
     height=500
 )
-st.plotly_chart(animated_trendline)
 
 # Display the animated trendline chart
 if st.button("Start"):
     for i in range(1, len(df) + 1):
         updated_trendline = px.scatter(
-        df.iloc[:i],
-        x='Operating Profit',
-        y='Total Sales',
-        color='Retailer',
-        trendline='ols',  # Ordinary Least Squares trendline
-        title='Retailer Sales Trendline',
-        labels={'x'='Total Sales','y'= 'Sales'},
-        animation_frame='Month',
-    
-    animation_group='Retailer',
-    width=800,
-    height=500
-)
+            df.iloc[:i],
+            x='Operating Profit',
+            y='Total Sales',
+            color='Retailer',
+            trendline='ols',  # Ordinary Least Squares trendline
+            title='Retailer Sales Trendline',
+            labels={'Total Sales': 'Sales'},
+            animation_frame='Year',
+            animation_group='Retailer',
+            width=800,
+            height=500
+        )
         animated_trendline_place.plotly_chart(updated_trendline)
-
-
 
 
 
