@@ -28,18 +28,19 @@ st.write(''' Welcome To Adidas US Sales Dashboard''')
 
 
 df=load_data('./AdidasUSSales.xlsx')
-with st.expander("Data Preview"):
-    st.dataframe(df)
-st.write('''
-         USE THE FOLLOWING TAB FOR FILTERING RETAILER WISE
-         ''')
-
 # Convert 'Invoice Date' to datetime
 df['Invoice Date'] = pd.to_datetime(df['Invoice Date'])
 df['Cumulative Total Sales'] = df.groupby('Retailer')['Total Sales'].cumsum()
 # Convert numeric columns to numeric types
 numeric_columns = ['Price per Unit', 'Units Sold', 'Total Sales', 'Operating Profit', 'Operating Margin']
 df[numeric_columns] = df[numeric_columns].apply(pd.to_numeric, errors='coerce')
+
+with st.expander("Data Preview"):
+    st.dataframe(df)
+st.write('''
+         USE THE FOLLOWING TAB FOR FILTERING RETAILER WISE
+         ''')
+
 
 # Select retailer for the bar race chart
 selected_retailers = st.multiselect("Select Retailers", df["Retailer"].unique(), default=df["Retailer"].unique())
