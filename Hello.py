@@ -166,6 +166,6 @@ col2.plotly_chart(line_chart_profit)
 
 # Advanced Scatter Plot Matrix
 st.subheader('Advanced Scatter Plot Matrix')
-scatter_matrix = px.scatter_matrix(df, dimensions=["Retailer","Product","Cumulative Sales State Wise", "State"], color='Operating Profit',
+scatter_matrix = px.scatter_matrix(df, dimensions=["Retailer","Product","Cumulative Sales State Wise", "State"], color='Operating Profit State Wise',
                                   title='Advanced Scatter Plot Matrix',width=1200, height=1000)
 st.plotly_chart(scatter_matrix, use_container_width=True)
