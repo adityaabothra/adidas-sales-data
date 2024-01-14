@@ -110,8 +110,8 @@ new_df=df.groupby(['Month','Retailer','Total Sales'])['Operating Profit'].sum().
 animated_trendline = px.scatter(
     new_df,
     x='Operating Profit',
-    y='Total Sales',
-    color='Retailer',
+    y='Retailer',
+    color='Region',
     trendline='ols',  # Ordinary Least Squares trendline
     title='Retailer Sales Trendline',
     labels={'Total Sales': 'Revenue Made with that Profit Margin '},
