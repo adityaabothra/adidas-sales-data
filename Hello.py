@@ -102,7 +102,7 @@ animated_trendline_place = st.empty()
 
 # Animated trendline chart
 animated_trendline = px.scatter(
-    df.groupby(['Operating Profit', 'Product', 'Year', 'Month', 'Day', 'Retailer'])['Total Sales'].sum().reset_index(),
+    df.groupby(['Retailer', 'Year'])['Total Sales'].sum().reset_index(),
     x='Operating Profit',
     y='Total Sales',
     color='Retailer',
@@ -119,7 +119,7 @@ animated_trendline = px.scatter(
 if st.button("Start"):
     for i in range(1, len(df) + 1):
         updated_trendline = px.scatter(
-            df.iloc[:i],
+            df.groupby(['Retailer', 'Year'])['Total Sales'].sum().reset_index().iloc[:i],
             x='Operating Profit',
             y='Total Sales',
             color='Retailer',
