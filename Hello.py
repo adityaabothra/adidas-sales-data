@@ -33,6 +33,7 @@ df.dropna()
 df['Invoice Date'] = pd.to_datetime(df['Invoice Date'])
 df['Cumulative Total Sales'] = df.groupby('Retailer')['Total Sales'].cumsum()
 df['Cumulative Total Sales Month Wise']=df.groupby('Month')['Total Sales'].cumsum()
+df['Cumulative Sales State Wise']=df.groupby('State')['Total Sales'].cumsum()
 # Convert numeric columns to numeric types
 numeric_columns = ['Price per Unit', 'Units Sold', 'Total Sales', 'Operating Profit', 'Operating Margin']
 df[numeric_columns] = df[numeric_columns].apply(pd.to_numeric, errors='coerce')
@@ -56,7 +57,6 @@ st.subheader('Retailer Wise Categorical Sunburst Chart')
 sunburst_chart = px.sunburst(filtered_df, path=['Retailer', 'Product'], values='Total Sales',
                              title='Sunburst Chart')
 st.plotly_chart(sunburst_chart, use_container_width=True)
-
 
 
 st.subheader("Bar Race Chart - Total Sales by Retailer")
@@ -165,6 +165,6 @@ col2.plotly_chart(line_chart_profit)
 
 # Advanced Scatter Plot Matrix
 st.subheader('Advanced Scatter Plot Matrix')
-scatter_matrix = px.scatter_matrix(df, dimensions=["Retailer","Product","Total Sales", "State"], color='Operating Profit',
+scatter_matrix = px.scatter_matrix(df, dimensions=["Retailer","Product","Cumulative Sales State Wise", "State"], color='Operating Profit',
                                   title='Advanced Scatter Plot Matrix',width=1200, height=1000)
 st.plotly_chart(scatter_matrix, use_container_width=True)
