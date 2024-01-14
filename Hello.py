@@ -125,7 +125,7 @@ if st.button("Start"):
         trendline='ols',  # Ordinary Least Squares trendline
         title='Retailer Sales Trendline',
         labels={'Total Sales': 'Sales'},
-        animation_frame='Year',
+        animation_frame='Month',
     
     animation_group='Retailer',
     width=800,
