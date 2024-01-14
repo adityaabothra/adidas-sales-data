@@ -112,8 +112,8 @@ animated_trendline_place = st.empty()
 # Animated trendline chart for cumulative sales comparison
 animated_trendline_cumulative = px.scatter(
     df,
-    x='Operating Profit',
-    y='Cumulative Total Sales Month Wise',
+    y='Operating Profit',
+    x='Cumulative Total Sales Month Wise',
     color='Retailer',
     title='Cumulative Retailer Sales Trendline',
     labels={'Cumulative Total Sales': 'Cumulative Sales'},
