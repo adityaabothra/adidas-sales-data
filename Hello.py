@@ -81,22 +81,23 @@ if st.button("Start Race"):
                   
         )
         bar_race_chart.plotly_chart(fig)
+        if(st.button("Stop Animation"):
+            bar_race_chart = st.empty()
+            # Bar Race Chart
+            fig = px.bar(
+            filtered_df,
+            x=["Operating Profit"],
+            y="Retailer",
+            orientation="h",
+            text="Total Sales",
+            title=f"Total Sales Race for {selected_retailers} Monthly Numbers",
+            animation_frame="Month",
+            labels={"Total Sales": "Total Sales ($)"},
+            )
           # Adjust the sleep duration as needed
-elif(st.button("Stop Animation"):
-    bar_race_chart = st.empty()
-    # Bar Race Chart
-    fig = px.bar(
-    filtered_df,
-    x=["Operating Profit"],
-    y="Retailer",
-    orientation="h",
-    text="Total Sales",
-    title=f"Total Sales Race for {selected_retailers} Monthly Numbers",
-    animation_frame="Month",
-    labels={"Total Sales": "Total Sales ($)"},
-    )                       
-    # Display the bar race chart
-    bar_race_chart.plotly_chart(fig,use_container_width=True)
+            bar_race_chart.plotly_chart(fig)                   
+            # Display the bar race chart
+            
         
 
 st.subheader("Market Share")
