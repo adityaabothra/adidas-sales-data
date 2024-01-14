@@ -129,28 +129,40 @@ st.plotly_chart(fig)
 # if st.button("Start"):
 #     animated_trendline_place.plotly_chart(animated_trendline_cumulative)
 
-st.subheader('Monthly Total Sales Over Years Animation')
-animated_line_chart_place = st.empty()
-
 yearly_sales = df.groupby(['Year','Month'])['Total Sales'].sum().reset_index()
 
-# Animated line chart
+st.subheader('Monthly Total Sales Over Years - Retailer-wise')
+animated_line_chart_place = st.empty()
+
+# Animated line chart for sales retailer-wise
 animated_line_chart = px.line(
     yearly_sales,
     x='Month',
     y='Total Sales',
     color='Year',
-    title='Monthly Total Sales Over Years',
+    title='Monthly Total Sales Over Years - Retailer-wise',
     markers=True,
     template="none"
 )
 
 # Display the animated line chart
 if st.button("Start Animation"):
-    for i in range(len(yearly_sales['Year'].unique())):
-        filtered_data = yearly_sales[yearly_sales['Year'] == yearly_sales['Year'].unique()[i]]
-        animated_line_chart.update_traces(x=filtered_data['Month'], y=filtered_data['Total Sales'])
-        animated_line_chart.update_layout(title_text=f'Monthly Total Sales Over Years - {yearly_sales["Year"].unique()[i]}')
+    for retailer in yearly_sales['Retailer'].unique():
+        filtered_data = yearly_sales[yearly_sales['Retailer'] == retailer]
+        animated_line_chart.data = []
+
+        for i in range(1, len(filtered_data) + 1):
+            updated_line_chart = px.line(
+                filtered_data.iloc[:i],
+                x='Month',
+                y='Total Sales',
+                color='Year',
+                title=f'Monthly Total Sales Over Years - {retailer}',
+                markers=True,
+                template="none"
+            )
+            animated_line_chart.add_traces(updated_line_chart.data)
+
         animated_line_chart_place.plotly_chart(animated_line_chart)
 
 
