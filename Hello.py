@@ -105,7 +105,7 @@ st.plotly_chart(fig)
 
 st.subheader('Retailer Sales Trendline Animation')
 animated_trendline_place = st.empty()
-new_df=df.groupby(['Month','Retailer','Operating Profit'])['Total Sales'].sum().reset_index()
+new_df=df.groupby(['Month','Retailer','Total Sales'])['Operating Profit'].sum().reset_index()
 # Animated trendline chart
 animated_trendline = px.scatter(
     new_df,
