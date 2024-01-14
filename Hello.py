@@ -105,27 +105,27 @@ fig = px.pie(market_share, values=market_share, names=market_share.index, title=
 # Show the plot
 st.plotly_chart(fig)
 
-st.subheader('Cumulative Retailer Sales Trendline Animation')
-animated_trendline_place = st.empty()
+# st.subheader('Cumulative Retailer Sales Trendline Animation')
+# animated_trendline_place = st.empty()
 
-# Animated trendline chart for cumulative sales comparison
-animated_trendline_cumulative = px.scatter(
-    df,
-    x='Total Sales',
-    y='Cumulative Total Sales',
-    color='Retailer',
-    title='Cumulative Retailer Sales Trendline',
-    labels={'Cumulative Total Sales': 'Cumulative Sales'},
-    animation_frame='Total Sales',
-    animation_group='Retailer',
-    width=800,
-    height=500,
-    trendline='ols'  # Ordinary Least Squares trendline
-)
+# # Animated trendline chart for cumulative sales comparison
+# animated_trendline_cumulative = px.scatter(
+#     df,
+#     x='Total Sales',
+#     y='Cumulative Total Sales',
+#     color='Retailer',
+#     title='Cumulative Retailer Sales Trendline',
+#     labels={'Cumulative Total Sales': 'Cumulative Sales'},
+#     animation_frame='Total Sales',
+#     animation_group='Retailer',
+#     width=800,
+#     height=500,
+#     trendline='ols'  # Ordinary Least Squares trendline
+# )
 
-# Display the animated trendline chart
-if st.button("Start"):
-    animated_trendline_place.plotly_chart(animated_trendline_cumulative)
+# # Display the animated trendline chart
+# if st.button("Start"):
+#     animated_trendline_place.plotly_chart(animated_trendline_cumulative)
 
 yearly_sales = df.groupby(['Year','Month'])['Total Sales'].sum().reset_index()
 yearly_profit = df.groupby(['Year','Month'])['Operating Profit'].sum().reset_index()
