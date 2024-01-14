@@ -130,12 +130,11 @@ st.plotly_chart(fig)
 #     animated_trendline_place.plotly_chart(animated_trendline_cumulative)
 
 yearly_sales = df.groupby(['Year','Month'])['Total Sales'].sum().reset_index()
+st.subheader('Monthly Total Sales Over Years')
+line_chart_place = st.empty()
 
-st.subheader('Monthly Total Sales Over Years - Animated')
-animated_line_chart_place = st.empty()
-
-# Animated line chart for total sales over years
-animated_line_chart = px.line(
+# Line chart for monthly total sales over years
+line_chart = px.line(
     yearly_sales,
     x='Month',
     y='Total Sales',
@@ -145,22 +144,8 @@ animated_line_chart = px.line(
     template="none"
 )
 
-# Display the animated line chart
-if st.button("Start Animation"):
-    for i in range(1, len(yearly_sales) + 1):
-        updated_line_chart = px.line(
-            yearly_sales.iloc[:i],
-            x='Month',
-            y='Total Sales',
-            color='Year',
-            title='Monthly Total Sales Over Years',
-            markers=True,
-            template="none"
-        )
-        animated_line_chart.data = updated_line_chart.data
-
-        # Use st.plotly_chart to display the animated line chart
-        animated_line_chart_place.plotly_chart(animated_line_chart)
+# Display the line chart using st.plotly_chart
+st.plotly_chart(line_chart)
 
 # Advanced Scatter Plot Matrix
 st.subheader('Advanced Scatter Plot Matrix')
