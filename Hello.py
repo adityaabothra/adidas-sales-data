@@ -152,7 +152,7 @@ yearly_profit = df.groupby(['Year','Month'])['Operating Profit'].sum().reset_ind
 st.subheader('Monthly Total Sales and Profit Over Years')
 
 # Create two columns for layout
-col1, col2 = st.beta_columns(2)
+col1, col2 = st.columns(2)
 
 # Line chart for monthly total sales over years
 line_chart_sales = px.line(
