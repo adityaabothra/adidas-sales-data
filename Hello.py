@@ -36,7 +36,7 @@ st.write('''
 
 # Convert 'Invoice Date' to datetime
 df['Invoice Date'] = pd.to_datetime(df['Invoice Date'])
-
+df['Cumulative Total Sales'] = df.groupby('Retailer')['Total Sales'].cumsum()
 # Convert numeric columns to numeric types
 numeric_columns = ['Price per Unit', 'Units Sold', 'Total Sales', 'Operating Profit', 'Operating Margin']
 df[numeric_columns] = df[numeric_columns].apply(pd.to_numeric, errors='coerce')
@@ -102,14 +102,14 @@ fig = px.pie(market_share, values=market_share, names=market_share.index, title=
 # Show the plot
 st.plotly_chart(fig)
 
-new_df=df
-new_df['Cumulative Total Sales'] = new_df.groupby('Retailer')['Total Sales'].cumsum()
+
+
 st.subheader('Cumulative Retailer Sales Trendline Animation')
 animated_trendline_place = st.empty()
 
 # Animated trendline chart for cumulative sales comparison
 animated_trendline_cumulative = px.scatter(
-    new_df,
+    df,
     x='Invoice Date',
     y='Cumulative Total Sales',
     color='Retailer',
@@ -127,27 +127,6 @@ if st.button("Start"):
     animated_trendline_place.plotly_chart(animated_trendline_cumulative)
 
 
-# st.subheader('Retailer Sales Trendline Animation')
-# animated_trendline_place = st.empty()
-# new_df=df.groupby(['Month','Retailer','Total Sales'])['Operating Profit'].sum().reset_index()
-# # Animated trendline chart
-# animated_trendline = px.scatter(
-#     ,
-#     x='Operating Profit',
-#     y='Retailer',
-#     color='Region',
-#     trendline='ols',  # Ordinary Least Squares trendline
-#     title='Retailer Sales Trendline',
-#     labels={'Total Sales': 'Revenue Made with that Profit Margin '},
-#     animation_frame='Month',
-#     animation_group='Retailer',
-#     width=800,
-#     height=500
-# )
-
-# # Display the animated trendline chart
-# if st.button("Start"):
-#     animated_trendline_place.plotly_chart(animated_trendline)
 
 # Advanced Scatter Plot Matrix
 st.subheader('Advanced Scatter Plot Matrix')
