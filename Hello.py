@@ -162,13 +162,11 @@ line_chart_sales = px.line(
     color='Year',
     title='Monthly Total Sales Over Years',
     markers=True,
-    template="none"
+    template="simple_white"
 )
 
 # Display the sales line chart using col1.plotly_chart
 col1.plotly_chart(line_chart_sales)
-
-st.markdown(" --- ", key="separator")
 
 # Line chart for monthly total profit over years
 line_chart_profit = px.line(
