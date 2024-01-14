@@ -176,7 +176,9 @@ line_chart_profit = px.line(
     color='Year',
     title='Monthly Total Profit Over Years',
     markers=True,
-    template="simple_white"
+    template="simple_white",
+    width=300,
+    height=400
 )
 
 # Display the profit line chart using col2.plotly_chart
