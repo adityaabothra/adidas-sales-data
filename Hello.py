@@ -31,7 +31,7 @@ df=load_data('./AdidasUSSales.xlsx')
 # Convert 'Invoice Date' to datetime
 df['Invoice Date'] = pd.to_datetime(df['Invoice Date'])
 df['Cumulative Total Sales'] = df.groupby('Retailer')['Total Sales'].cumsum()
-df['Cumulative Total Sales Month Wise']=df.groupby(['Retailer','Month'])['Total Sales'].cumsum()
+df['Cumulative Total Sales Month Wise']=df.groupby('Month')['Total Sales'].cumsum()
 # Convert numeric columns to numeric types
 numeric_columns = ['Price per Unit', 'Units Sold', 'Total Sales', 'Operating Profit', 'Operating Margin']
 df[numeric_columns] = df[numeric_columns].apply(pd.to_numeric, errors='coerce')
@@ -113,7 +113,7 @@ animated_trendline_place = st.empty()
 animated_trendline_cumulative = px.scatter(
     df,
     x='Operating Profit',
-    y='Cumulative Total Sales Month Wise',
+    y='Cumulative Total Sales',
     color='Retailer',
     title='Cumulative Retailer Sales Trendline',
     labels={'Cumulative Total Sales': 'Cumulative Sales'},
